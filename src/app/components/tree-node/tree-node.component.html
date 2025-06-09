@@ -1,0 +1,42 @@
+<div class="tree-node">
+  <div class="tree-header">
+    <div class="line-prefix" [class.last]="isLast" *ngIf="hasParent">
+      <span>{{ isLast ? '└──' : '├──' }}</span>
+    </div>
+
+    <span (click)="toggleExpand()" class="toggle-icon">
+      <i [ngClass]="form.controls.isExpanded.value ? 'fi fi-sr-minus' : 'fi fi-sr-settings'"></i>
+    </span>
+
+    <span *ngIf="!form.controls.isEditing.value" (dblclick)="editNode()" class="label">
+      <i class="fi fi-sr-folder"></i> {{ form.controls.label.value }}
+    </span>
+
+    <input *ngIf="form.controls.isEditing.value"
+           [formControl]="form.controls.label"
+           (blur)="confirmLabel()"
+           (keyup.enter)="confirmLabel()"
+           placeholder="Node label"
+           class="node-input"
+           autofocus />
+
+    <button (click)="addChildNode()" class="plus-btn">
+      <i class="fi fi-sr-plus"></i>
+    </button>
+    <button (click)="removeNode()" class="minus-btn">
+      <i class="fi fi-sr-trash-restore"></i>
+    </button>
+  </div>
+
+  <div class="children" *ngIf="form.controls.isExpanded.value && children.length > 0" style="margin-left: 20px;">
+    <ng-container *ngFor="let child of children.controls; let i = index">
+      <app-tree-node
+        [form]="child"
+        [parentArray]="children"
+        [index]="i"
+        [hasParent]="true"
+        [isLast]="i === children.length - 1"
+      ></app-tree-node>
+    </ng-container>
+  </div>
+</div>

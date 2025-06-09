@@ -1,0 +1,8 @@
+<div class="tree-form">
+  <button (click)="addRootNode()">Add</button>
+  <button (click)="saveAllTree()">Save</button>
+
+  <ng-container *ngFor="let node of rootNodes.controls; let i = index">
+    <app-tree-node [form]="node" [parentArray]="rootNodes" [index]="i"></app-tree-node>
+  </ng-container>
+</div>

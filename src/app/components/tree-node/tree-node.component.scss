@@ -1,0 +1,71 @@
+$btn-size: 30px;
+$transition-time: 0.2s;
+
+%base-btn {
+  width: $btn-size;
+  height: $btn-size;
+  font-weight: bold;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all $transition-time ease-in-out;
+  padding: 2px 6px;
+  font-size: 14px;
+}
+
+.plus-btn {
+  @extend %base-btn;
+
+  &:hover {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    transform: scale(1.1);
+  }
+}
+
+.minus-btn {
+  @extend %base-btn;
+
+  &:hover {
+    background-color: #f8d7da;
+    color: #842029;
+    transform: scale(1.1);
+  }
+}
+
+.tree-header {
+  display: flex;
+  align-items: center;
+  font-family: monospace;
+}
+
+.line-prefix {
+  width: 40px;
+  display: inline-block;
+  color: #888;
+  &.last {
+    color: #fff;
+  }
+}
+
+.toggle-icon {
+  width: 24px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+
+.label {
+  min-width: 150px;
+  font-weight: 500;
+}
+
+.node-input {
+  min-width: 150px;
+  padding: 2px 6px;
+}
+
+

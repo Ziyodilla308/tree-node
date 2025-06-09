@@ -1,0 +1,24 @@
+[
+  {
+    "label": "Root A",
+    "children": [
+      {
+        "label": "Child A1",
+        "children": []
+      },
+      {
+        "label": "Child A2",
+        "children": [
+          {
+            "label": "Child A2.1",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Root B",
+    "children": []
+  }
+]

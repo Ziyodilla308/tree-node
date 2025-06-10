@@ -1,10 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormArray, ReactiveFormsModule } from '@angular/forms';
-import {
-  TreeNodeFormGroup,
-  createTreeNodeForm,
-  formToJsonSingle
-} from '../../utils/form-utils';
+import { TreeNodeFormGroup, createTreeNodeForm, formToJsonSingle } from '../../utils/form-utils';
 import { TreeFormService } from '../../services/tree-form.service';
 import { TreeApiService } from '../../services/tree-api.service';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
@@ -15,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
   templateUrl: './tree-node.component.html',
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, NgForOf, NgClass],
-  styleUrls: ['./tree-node.component.scss']
+  styleUrls: ['./tree-node.component.scss'],
 })
 export class TreeNodeComponent {
   @Input() form!: TreeNodeFormGroup;
@@ -24,7 +20,10 @@ export class TreeNodeComponent {
   @Input() hasParent: boolean = false;
   @Input() isLast: boolean = false;
 
-  constructor(public treeService: TreeFormService, private api: TreeApiService) {}
+  constructor(
+    public treeService: TreeFormService,
+    private api: TreeApiService,
+  ) {}
 
   get children(): FormArray<TreeNodeFormGroup> {
     return this.form.get('children') as FormArray<TreeNodeFormGroup>;
@@ -69,7 +68,7 @@ export class TreeNodeComponent {
       label: '',
       isExpanded: false,
       isEditing: true,
-      childrenIds: []
+      childrenIds: [],
     });
 
     this.form.controls.isExpanded.setValue(true);

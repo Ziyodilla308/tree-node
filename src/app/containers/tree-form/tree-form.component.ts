@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { TreeFormService } from '../../services/tree-form.service';
-import {TreeNodeFormGroup, formToJson, formToJsonSingle} from '../../utils/form-utils';
+import { TreeNodeFormGroup, formToJson, formToJsonSingle } from '../../utils/form-utils';
 import { TreeApiService } from '../../services/tree-api.service';
-import {TreeNodeComponent} from '../../components/tree-node/tree-node.component';
-import {NgForOf} from '@angular/common';
+import { TreeNodeComponent } from '../../components/tree-node/tree-node.component';
+import { NgForOf } from '@angular/common';
 import { v4 as uuidv4 } from 'uuid';
-import {TreeNode} from '../../models/tree-node.model';
+import { TreeNode } from '../../models/tree-node.model';
 
 function childrenIdsUnchanged(form: TreeNodeFormGroup, json: TreeNode): boolean {
   const currentIds = form.controls.children.controls
@@ -23,10 +23,7 @@ function childrenIdsUnchanged(form: TreeNodeFormGroup, json: TreeNode): boolean 
   selector: 'app-tree-form',
   templateUrl: './tree-form.component.html',
   standalone: true,
-  imports: [
-    TreeNodeComponent,
-    NgForOf
-  ],
+  imports: [TreeNodeComponent, NgForOf],
   styleUrls: ['./tree-form.component.scss'],
 })
 export class TreeFormComponent implements OnInit {
@@ -34,7 +31,7 @@ export class TreeFormComponent implements OnInit {
 
   constructor(
     private treeService: TreeFormService,
-    private api: TreeApiService
+    private api: TreeApiService,
   ) {}
 
   ngOnInit(): void {
@@ -48,10 +45,8 @@ export class TreeFormComponent implements OnInit {
     this.rootNodes.push(newNode);
   }
 
-
-
   saveAllTree() {
-    this.rootNodes.controls.forEach((group) => {
+    this.rootNodes.controls.forEach(group => {
       const json = formToJsonSingle(group);
       const id = group.controls.id.value;
 
@@ -73,7 +68,4 @@ export class TreeFormComponent implements OnInit {
       }
     });
   }
-
-
-
 }

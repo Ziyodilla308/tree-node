@@ -12,13 +12,15 @@
       <i class="fi fi-sr-folder"></i> {{ form.controls.label.value }}
     </span>
 
-    <input *ngIf="form.controls.isEditing.value"
-           [formControl]="form.controls.label"
-           (blur)="confirmLabel()"
-           (keyup.enter)="confirmLabel()"
-           placeholder="Node label"
-           class="node-input"
-           autofocus />
+    <input
+      *ngIf="form.controls.isEditing.value"
+      [formControl]="form.controls.label"
+      (blur)="confirmLabel()"
+      (keyup.enter)="confirmLabel()"
+      placeholder="Node label"
+      class="node-input"
+      autofocus
+    />
 
     <button (click)="addChildNode()" class="plus-btn">
       <i class="fi fi-sr-plus"></i>
@@ -28,7 +30,11 @@
     </button>
   </div>
 
-  <div class="children" *ngIf="form.controls.isExpanded.value && children.length > 0" style="margin-left: 20px;">
+  <div
+    class="children"
+    *ngIf="form.controls.isExpanded.value && children.length > 0"
+    style="margin-left: 20px"
+  >
     <ng-container *ngFor="let child of children.controls; let i = index">
       <app-tree-node
         [form]="child"

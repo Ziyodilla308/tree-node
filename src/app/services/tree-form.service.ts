@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TreeNode } from '../models/tree-node.model';
 import { TreeNodeFormGroup } from '../utils/form-utils';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class TreeFormService {
@@ -12,11 +12,11 @@ export class TreeFormService {
       id: this.fb.control<string | null>(partial.id ?? null),
       label: this.fb.control<string>(partial.label ?? '', {
         validators: [Validators.required],
-        nonNullable: true
+        nonNullable: true,
       }),
       isEditing: this.fb.control<boolean>(partial.isEditing ?? true, { nonNullable: true }),
       isExpanded: this.fb.control<boolean>(partial.isExpanded ?? true, { nonNullable: true }),
-      children: this.fb.array<TreeNodeFormGroup>([])
+      children: this.fb.array<TreeNodeFormGroup>([]),
     }) as TreeNodeFormGroup;
   }
 
@@ -41,8 +41,9 @@ export class TreeFormService {
   loadTreeFromJson(data: TreeNode[]): FormArray<TreeNodeFormGroup> {
     const formArray = new FormArray<TreeNodeFormGroup>([]);
     const nodeMap = new Map<string, TreeNode>();
-    data.forEach(n => { if (n.id) nodeMap.set(n.id, n); });
-
+    data.forEach(n => {
+      if (n.id) nodeMap.set(n.id, n);
+    });
 
     const allChildIds = new Set<string>();
     data.forEach(n => (n.childrenIds ?? []).forEach(id => allChildIds.add(id)));

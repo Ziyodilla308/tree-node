@@ -1,5 +1,5 @@
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {TreeNode} from '../models/tree-node.model';
+import { TreeNode } from '../models/tree-node.model';
 
 export type TreeNodeFormGroup = FormGroup<{
   id: FormControl<string | null>;
@@ -11,14 +11,14 @@ export type TreeNodeFormGroup = FormGroup<{
 
 export function createTreeNodeForm(
   fb: FormBuilder,
-  node: Partial<TreeNode> = {}
+  node: Partial<TreeNode> = {},
 ): TreeNodeFormGroup {
   return new FormGroup({
     id: new FormControl<string | null>(node.id ?? null),
     label: new FormControl<string>(node.label ?? '', Validators.required),
     isEditing: new FormControl<boolean>(node.isEditing ?? true),
     isExpanded: new FormControl<boolean>(node.isExpanded ?? true),
-    children: new FormArray<TreeNodeFormGroup>([])
+    children: new FormArray<TreeNodeFormGroup>([]),
   }) as TreeNodeFormGroup;
 }
 
@@ -36,6 +36,6 @@ export function formToJsonSingle(group: TreeNodeFormGroup): TreeNode {
     isExpanded: group.controls.isExpanded.value,
     childrenIds: group.controls.children.controls
       .map(child => child.controls.id.value)
-      .filter((id): id is string => !!id)
+      .filter((id): id is string => !!id),
   };
 }

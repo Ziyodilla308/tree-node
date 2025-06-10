@@ -1,31 +1,29 @@
+// services/tree-api.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { TreeNode } from '../models/tree-node.model';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class TreeApiService {
-  private apiUrl = 'http://localhost:3000/tree';
-
-  constructor(private http: HttpClient) {}
+  constructor(private localStorage: LocalStorageService) {}
 
   getTree(): Observable<TreeNode[]> {
-    return this.http.get<TreeNode[]>(this.apiUrl);
+    return of(this.localStorage.getTree());
   }
 
   addTree(tree: TreeNode): Observable<TreeNode> {
-    return this.http.post<TreeNode>(this.apiUrl, tree);
+    this.localStorage.addTree(tree);
+    return of(tree);
   }
 
   updateTree(id: string, tree: TreeNode): Observable<TreeNode> {
-    return this.http.put<TreeNode>(`${this.apiUrl}/${id}`, tree);
+    this.localStorage.updateTree(id, tree);
+    return of(tree);
   }
 
-  deleteTree(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
-
-  saveAllTree(tree: TreeNode[]) {
-    return this.http.put('/api/tree', tree); // JSON Server uchun PUT
+  deleteTree(id: string): Observable<null> {
+    this.localStorage.deleteTree(id);
+    return of(null);
   }
 }

@@ -1,19 +1,19 @@
 import {
+  withHttpTransferCache
+} from "./chunk-TRSFWWN7.js";
+import {
   CommonModule,
   DomAdapter,
   getDOM,
   setRootDomAdapter
-} from "./chunk-J32JRVNE.js";
-import {
-  withHttpTransferCache
-} from "./chunk-RTSY5SVA.js";
+} from "./chunk-5YUKBJWD.js";
 import {
   DOCUMENT,
   PLATFORM_BROWSER_ID,
   XhrFactory,
   isPlatformServer,
   parseCookieValue
-} from "./chunk-O2GYW7U4.js";
+} from "./chunk-TZ6LAXYA.js";
 import {
   APP_ID,
   ApplicationModule,
@@ -72,7 +72,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-AXFVII4J.js";
+} from "./chunk-5QXQOMPN.js";
 import {
   __spreadProps,
   __spreadValues
@@ -2015,4 +2015,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-IQOHKC5Q.js.map
+//# sourceMappingURL=chunk-5GOIE4N4.js.map

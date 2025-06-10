@@ -60,6 +60,14 @@ export class TreeNodeComponent {
   }
 
   addChildNode() {
+    const hasOpenInput = this.children.controls.some(
+        child => child.controls.isEditing.value && !child.controls.label.value.trim()
+    );
+
+    if (hasOpenInput) {
+      return;
+    }
+
     const parentId = this.form.controls.id.value;
     const newId = uuidv4();
 
@@ -73,6 +81,7 @@ export class TreeNodeComponent {
 
     this.form.controls.isExpanded.setValue(true);
     this.children.push(newNode);
+
     this.api.addTree(formToJsonSingle(newNode)).subscribe();
 
     if (parentId) {

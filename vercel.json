@@ -2,8 +2,8 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
+      "src": "dist/tree-node/**/*",
+      "use": "@vercel/static",
       "config": {
         "distDir": "dist/tree-node"
       }

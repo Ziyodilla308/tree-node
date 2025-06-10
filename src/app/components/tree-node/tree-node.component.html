@@ -22,12 +22,13 @@
       autofocus
     />
 
-    <button (click)="addChildNode()" class="plus-btn">
+    <span (click)="addChildNode()">
       <i class="fi fi-sr-plus"></i>
-    </button>
-    <button (click)="removeNode()" class="minus-btn">
-      <i class="fi fi-sr-trash-restore"></i>
-    </button>
+    </span>
+
+    <span (click)="removeNode()">
+        <i class="fi fi-sr-trash-restore"></i>
+    </span>
   </div>
 
   <div

@@ -41,6 +41,14 @@ export class TreeFormComponent implements OnInit {
   }
 
   addRootNode() {
+    const hasOpenEmptyNode = this.rootNodes.controls.some(
+        node => node.controls.isEditing.value && !node.controls.label.value.trim()
+    );
+
+    if (hasOpenEmptyNode) {
+      return;
+    }
+
     const newNode = this.treeService.createNode();
     this.rootNodes.push(newNode);
   }
@@ -67,5 +75,9 @@ export class TreeFormComponent implements OnInit {
         });
       }
     });
+  }
+
+  clear() {
+    localStorage.clear();
   }
 }

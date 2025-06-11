@@ -1,13 +1,8 @@
-// services/local-storage.service.ts
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
-import {TreeNode} from "../models/tree-node.model";
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
     private readonly STORAGE_KEY = 'tree_data';
-
-    private treeSubject = new BehaviorSubject<TreeNode[]>(this.getTree());
 
     getTree(): any[] {
         const data = localStorage.getItem(this.STORAGE_KEY);
@@ -35,15 +30,4 @@ export class LocalStorageService {
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(filtered));
     }
 
-    saveAllTree(trees: any[]): void {
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(trees));
-    }
-
-    get tree$(): Observable<TreeNode[]> {
-        return this.treeSubject.asObservable();
-    }
-
-    private notifyTreeChanged(): void {
-        this.treeSubject.next(this.getTree());
-    }
 }

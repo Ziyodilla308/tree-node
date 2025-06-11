@@ -1,3 +1,15 @@
+.card {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 0 3px 3px rgba(0,0,0,0.125);
+}
+
+.tree {
+  margin-top: 30px;
+}
+
 button {
   --color: #0077ff;
   font-family: inherit;

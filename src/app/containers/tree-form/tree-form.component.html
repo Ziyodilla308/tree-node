@@ -1,8 +1,20 @@
 <div class="tree-form">
-  <button (click)="addRootNode()">Add</button>
-  <button (click)="saveAllTree()">Save</button>
+    <div class="card">
+        <button (click)="addRootNode()">
+            <i class="fi fi-sr-plus"></i>
+        </button>
+        <button (click)="saveAllTree()">
+            <i class="fi fi-sr-check"></i>
+        </button>
 
-  <ng-container *ngFor="let node of rootNodes.controls; let i = index">
-    <app-tree-node [form]="node" [parentArray]="rootNodes" [index]="i"></app-tree-node>
-  </ng-container>
+        <button (click)="clear()">
+            <i class="fi fi-sr-trash"></i>
+        </button>
+    </div>
+
+  <div class="tree">
+      <ng-container *ngFor="let node of rootNodes.controls; let i = index">
+          <app-tree-node [form]="node" [parentArray]="rootNodes" [index]="i"></app-tree-node>
+      </ng-container>
+  </div>
 </div>
